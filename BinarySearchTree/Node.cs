@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructuresCode.BinaryTree
+namespace BinarySearchTree
 {
     public class Node
     {
-        public Node leftChild;
         public int data;
+        public Node leftChild;
         public Node rightChild;
 
         public Node(int data)
