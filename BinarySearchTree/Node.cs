@@ -8,15 +8,33 @@ namespace BinarySearchTree
 {
     public class Node
     {
-        public int data;
-        public Node leftChild;
-        public Node rightChild;
-
-        public Node(int data)
+        int data;
+        Node left;
+        Node right;
+        public int Data
         {
-            this.data = data;
-            leftChild = null;
-            rightChild = null;
+            get
+            {
+                return data;
+            }
+            set
+            {
+
+            }
+        }
+        public Node Left
+        {
+            get { return left; }
+            set { left = value; }
+        }
+        public Node Right
+        {
+            get { return right; }
+            set { right = value; }
+        }
+        public Node(int item)
+        {
+            data = item;
         }
     }
 }

@@ -8,96 +8,82 @@ namespace BinarySearchTree
 {
     public class BinaryTree
     {
-        public Node root;
+        Node root = null;
         public BinaryTree()
         {
-            root = null;
-        }
 
-        public Node Root
-        {
-            get { return root; }
-            set { root = value; }
         }
-
-        public void Add(int data)
+        public void Add(int item)
         {
-            Node newNode = new Node(data);
+            Node node = new Node(item);
             if (root == null)
             {
-                this.root = newNode;
+                root = node;
+                return;
             }
-            else
+            Node current = root;
+            while (current != null)
             {
-                Node current = root;
-                while (true)
+                if (current.Data > node.Data)
                 {
-                    Node parent = current;
-                    if (parent.data < data)
+                    if (current.Left != null)
                     {
-                        current = current.rightChild;
-                        if (current == null)
-                        {
-                            parent.rightChild = newNode;
-                            return;
-                        }
-
+                        current = current.Left;
+                        continue;
                     }
-                    else if (parent.data > data)
+                    else if (current.Left == null)
                     {
-                        current = current.leftChild;
-                        if (current == null)
-                        {
-                            parent.leftChild = newNode;
-                            return;
-                        }
+                        current.Left = node;
+                        return;
+                    }
+                }
+                else if (current.Data < node.Data)
+                {
+                    if (current.Right != null)
+                    {
+                        current = current.Right;
+                        continue;
+                    }
+                    else if (current.Right == null)
+                    {
+                        current.Right = node;
+                        return;
                     }
                 }
             }
         }
 
-        public void Search(int data)
+        public bool Search(int searchData)
         {
-            if (root == null)
+            Node current = root;
+            while (current != null)
             {
-                Console.WriteLine("There is not a tree to search.");
-            }
-            else
-            {
-                Node current = root;
-                while (true)
+                if (current.Data.Equals(searchData))
                 {
-                    Node parent = current;
-                    if (parent.data < data)
+                    Console.WriteLine("Found");
+                    return true;
+                }
+                else if (current.Data > searchData)
+                {
+                    if (current != null)
                     {
-                        current = current.rightChild;
-                        if (current == null)
-                        {
-                            Console.WriteLine(data + " is not in the tree.");
-                            return;
-                        }
-                        else if (current.data == data)
-                        {
-                            Console.WriteLine("The tree contains " + data + ".");
-                            return;
-                        }
+                        current = current.Left;
+                        Console.WriteLine("Left");
+                        continue;
                     }
-                    else if (parent.data > data)
+                }
+                else if (current.Data < searchData)
+                {
+                    if (current.Right != null)
                     {
-                        current = current.leftChild;
-                        if (current == null)
-                        {
-                            Console.WriteLine(data + " is not in the tree.");
-                            return;
-                        }
-                        else if (current.data == data)
-                        {
-                            Console.WriteLine("The tree contains " + data + ".");
-                            return;
-                        }
+                        current = current.Right;
+                        Console.WriteLine("Right");
+                        return true;
                     }
                 }
             }
+            Console.WriteLine("Not Found");
+            return false;
         }
     }
 }
