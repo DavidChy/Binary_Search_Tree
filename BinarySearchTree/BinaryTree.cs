@@ -56,9 +56,48 @@ namespace BinarySearchTree
             }
         }
 
-        public void Search()
+        public void Search(int data)
         {
-
+            if (root == null)
+            {
+                Console.WriteLine("There is not a tree to search.");
+            }
+            else
+            {
+                Node current = root;
+                while (true)
+                {
+                    Node parent = current;
+                    if (parent.data < data)
+                    {
+                        current = current.rightChild;
+                        if (current == null)
+                        {
+                            Console.WriteLine(data + " is not in the tree.");
+                            return;
+                        }
+                        else if (current.data == data)
+                        {
+                            Console.WriteLine("The tree contains " + data + ".");
+                            return;
+                        }
+                    }
+                    else if (parent.data > data)
+                    {
+                        current = current.leftChild;
+                        if (current == null)
+                        {
+                            Console.WriteLine(data + " is not in the tree.");
+                            return;
+                        }
+                        else if (current.data == data)
+                        {
+                            Console.WriteLine("The tree contains " + data + ".");
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }
 }
